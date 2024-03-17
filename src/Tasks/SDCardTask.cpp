@@ -1,19 +1,19 @@
 #include "main.h"
 
 
-TickType_t xLastWakeTime;
+TickType_t xIMULastWakeTime;
 const TickType_t xFrequency = 1000;
 
 File dataFile;
 
 
 void SDCardTask::setup(){
-    xLastWakeTime = xTaskGetTickCount();
+    xIMULastWakeTime = xTaskGetTickCount();
 
 }
 
 void SDCardTask::loop(){
-    vTaskDelayUntil(&xLastWakeTime, xFrequency);
+    vTaskDelayUntil(&xIMULastWakeTime, xFrequency);
     dataFile = SD.open("./data.csv");
     IMUData currentData;
     while (xQueueReceive(xIMUDataQueue, &currentData, 2) == pdPASS)
