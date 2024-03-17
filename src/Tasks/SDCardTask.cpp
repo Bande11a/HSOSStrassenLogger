@@ -14,12 +14,16 @@ void SDCardTask::setup(){
 
 void SDCardTask::loop(){
     vTaskDelayUntil(&xIMULastWakeTime, xFrequency);
-    dataFile = SD.open("./data.csv");
+    dataFile = SD.open("./data.csv", FILE_WRITE);
+    if(!dataFile){
+        Serial.println("Failed to open File");
+    }
     IMUData currentData;
     while (xQueueReceive(xIMUDataQueue, &currentData, 2) == pdPASS)
     {
         dataFile.println(currentData.toString());
     }
     dataFile.close();
+    Serial.println("in here bro");
 }
 

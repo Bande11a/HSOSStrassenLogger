@@ -24,16 +24,14 @@ void restartTasks(){
 void setup() {
 
   M5.begin(true, true, true, true);
-  HWSerial2.begin(9600);
   M5.Lcd.clearDisplay();
-  SD.begin();
 
   delay(1000);
 
 
-  LocalSDTask = new SDCardTask(128, 10, NULL);
+  LocalSDTask = new SDCardTask(2048, 10, NULL);
   delay(1);
-  LocalIMUTask = new IMUTask(128, 20, NULL);
+  LocalIMUTask = new IMUTask(2048, 20, NULL);
 
   pausetasks();
 
@@ -48,12 +46,15 @@ void loop() {
     if(running){
       M5.Lcd.clearDisplay();
       M5.Lcd.drawString("Paused", 50, 50);
+      running = !running;
 
       pausetasks();
     }
     else{
       M5.Lcd.clearDisplay();
       M5.Lcd.drawString("Running", 50, 50);
+      running = !running;
+
       restartTasks();
     }
 
