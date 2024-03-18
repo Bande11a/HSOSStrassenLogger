@@ -8,7 +8,7 @@ SDCardTask* LocalSDTask;
 
 bool running = false; 
 
-u8_t currentRoadType;
+u8_t currentRoadType = 0;
 
 
 void pausetasks(){
@@ -35,8 +35,12 @@ void setup() {
   delay(1);
   LocalIMUTask = new IMUTask(4096, 20, NULL);
 
+  delay(10);
+
   pausetasks();
 
+  M5.Lcd.setTextSize(2);
+  M5.Lcd.drawString(StringRoadType[currentRoadType], 50, 20);
   M5.Lcd.drawString("Paused", 50, 50);
   
   
@@ -47,15 +51,17 @@ void loop() {
   if(M5.BtnA.wasPressed()){
     if(running){
       M5.Lcd.clearDisplay();
+      M5.Lcd.drawString(StringRoadType[currentRoadType], 50, 20);
       M5.Lcd.drawString("Paused", 50, 50);
-      running = !running;
+      running = false;
 
       pausetasks();
     }
     else{
       M5.Lcd.clearDisplay();
+      M5.Lcd.drawString(StringRoadType[currentRoadType], 50, 20);
       M5.Lcd.drawString("Running", 50, 50);
-      running = !running;
+      running = true;
 
       restartTasks();
     }

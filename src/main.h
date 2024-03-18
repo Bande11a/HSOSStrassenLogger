@@ -8,17 +8,9 @@
 #include "./Tasks/Tasks.h"
 
 
-enum RoadType{
-    Asphalt,
-    Kies,
-    Pflaster,
-    KopfsteinPflaster,
-    Feldweg,
-    Bodenwelle
-};
 
 const String StringRoadType[] = {"Asphalt", "Kies", "Pflaster", "KopfsteinPflaster", "Feldweg", "Bodenwelle"};
-
+extern u8_t currentRoadType;
 
 
 #endif

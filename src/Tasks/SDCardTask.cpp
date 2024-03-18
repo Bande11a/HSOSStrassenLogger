@@ -25,7 +25,6 @@ void SDCardTask::loop(){
             dataFile.println(currentData.toString());
         }
         dataFile.close();
-        Serial.println("in here bro");
     }
 }
 
