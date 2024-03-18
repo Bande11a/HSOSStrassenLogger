@@ -8,6 +8,8 @@ SDCardTask* LocalSDTask;
 
 bool running = false; 
 
+u8_t currentRoadType;
+
 
 void pausetasks(){
   LocalIMUTask->pauseTask();
@@ -57,15 +59,24 @@ void loop() {
 
       restartTasks();
     }
-
-    
-
-    
   }
 
 
+  if(!running && M5.BtnB.wasPressed()){
+    if(currentRoadType == 5){
+      currentRoadType = 0;
+    }
+    else{
+      currentRoadType +=1;
+    }
+
+    M5.Lcd.clearDisplay();
+    M5.Lcd.drawString("Paused", 50, 50);
+    M5.Lcd.drawString(StringRoadType[currentRoadType], 50, 20);
+
+  }
+
+  delay(10);
   M5.update();
-  
-  
 }
 

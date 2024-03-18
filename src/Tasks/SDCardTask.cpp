@@ -14,7 +14,7 @@ void SDCardTask::setup(){
 
 void SDCardTask::loop(){
     vTaskDelayUntil(&xIMULastWakeTime, xFrequency);
-    dataFile = SD.open("/data.csv", FILE_APPEND);
+    dataFile = SD.open("/data_" + StringRoadType[currentRoadType] +".csv", FILE_APPEND);
     if(!dataFile){
         Serial.println("Failed to open File");
     }
