@@ -12,13 +12,13 @@ bool running = false;
 void pausetasks(){
   LocalIMUTask->pauseTask();
   LocalSDTask->pauseTask();
-  xQueueReset(xIMUDataQueue);
+  // xQueueReset(xIMUDataQueue);
 }
 
 void restartTasks(){
   LocalIMUTask->resumeTask();
   LocalSDTask->resumeTask();
-  xQueueReset(xIMUDataQueue);
+  // xQueueReset(xIMUDataQueue);
 }
 
 void setup() {
@@ -29,9 +29,9 @@ void setup() {
   delay(1000);
 
 
-  LocalSDTask = new SDCardTask(2048, 10, NULL);
+  LocalSDTask = new SDCardTask(4096, 10, NULL);
   delay(1);
-  LocalIMUTask = new IMUTask(2048, 20, NULL);
+  LocalIMUTask = new IMUTask(4096, 20, NULL);
 
   pausetasks();
 
