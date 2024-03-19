@@ -1,11 +1,13 @@
 #ifndef main_h_
 #define main_h_
 
-#include <M5Stack.h>
+#include <M5Core2.h>
 #include <ArduinoJson.h>
 #include <TinyGPS++.h>
 #include <WiFi.h>
 #include "./Tasks/Tasks.h"
+
+
 
 
 

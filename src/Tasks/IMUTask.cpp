@@ -9,7 +9,7 @@ void IMUTask::setup(){
     xLastWakeTime = xTaskGetTickCount();
     xIMUDataQueue = xQueueCreate(250, sizeof(IMUData));
 
-    M5.Imu.Init();
+    M5.IMU.Init();
 
 
 }
@@ -21,9 +21,9 @@ void IMUTask::loop(){
     IMUData newData;
 
 
-    M5.Imu.getAccelData(&currentData.accX, &currentData.accY, &currentData.accZ);
-    M5.Imu.getGyroData(&currentData.gyrX, &currentData.gyrY, &currentData.gyrZ);
-    M5.Imu.getAhrsData(&currentData.pitch, &currentData.roll, &currentData.yaw);
+    M5.IMU.getAccelData(&currentData.accX, &currentData.accY, &currentData.accZ);
+    M5.IMU.getGyroData(&currentData.gyrX, &currentData.gyrY, &currentData.gyrZ);
+    M5.IMU.getAhrsData(&currentData.pitch, &currentData.roll, &currentData.yaw);
 
 
     //Example code to send data into a queue
